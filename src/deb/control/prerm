@@ -1,0 +1,18 @@
+#!/bin/bash
+
+echo "Prerm: Attempting to stop [[artifactId]] service..."
+
+###
+# http://bash.cyberciti.biz/guide/The_case_statement
+###
+
+statusCMD=$(supervisorctl status [[artifactId]])
+stopCMD=$(supervisorctl stop [[artifactId]])
+
+case "$statusCMD" in
+  *RUNNING*)
+      echo "Prerm: stopping service [[artifactId]]: $stopCMD"
+    ;;
+  *)
+      echo "Prerm: Service [[artifactId]] is not running. Status: $statusCMD"
+esac

@@ -1,0 +1,30 @@
+#!/bin/bash
+
+rm -rf /var/log/acme/jdeb-example/jdeb-example-stdout.log
+rm -rf /var/log/acme/jdeb-example/jdeb-example-stderr.log
+
+###
+# http://askubuntu.com/questions/101962/script-to-only-execute-during-first-install-of-a-package
+###
+
+if [ -z "$2" ]; then
+  echo "Preinst: clean installation, no actions"
+else
+
+  ###
+  # http://bash.cyberciti.biz/guide/The_case_statement
+  ###
+
+  echo "Preinst: attempting to stop [[artifactId]] service..."
+
+  statusCMD=$(supervisorctl status [[artifactId]])
+  stopCMD=$(supervisorctl stop [[artifactId]])
+
+    case "$statusCMD" in
+      *RUNNING*)
+          echo "Prerm: Attempt to stop service [[artifactId]]: $stopCMD"
+        ;;
+      *)
+          echo "Prerm: Service [[artifactId]] is not running. Status: $statusCMD"
+    esac
+fi

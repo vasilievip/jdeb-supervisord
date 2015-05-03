@@ -1,0 +1,4 @@
+#!/bin/bash
+
+echo "Postinst:  $(supervisorctl reread)"
+echo "Postinst:  $(supervisorctl add [[artifactId]])"
