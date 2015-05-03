@@ -1,3 +1,4 @@
 #!/bin/bash
 
 echo "Postrm: removing process, $(supervisorctl remove [[artifactId]])"
+rm -rf /etc/supervisor/conf.d/[[artifactId]].conf

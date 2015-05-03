@@ -47,24 +47,11 @@
                                 </data>
 
                                 <data>
-                                  <src>${basedir}/src/deb/supervisord/jdeb-example.conf</src>
+                                  <src>${basedir}/src/deb/supervisord/service-config-template.conf</src>
                                   <type>file</type>
                                   <mapper>
                                     <type>perm</type>
                                     <prefix>/etc/supervisor/conf.d</prefix>
-                                    <!--<user>loader</user>-->
-                                    <!--<group>loader</group>-->
-                                  </mapper>
-                                </data>
-
-                                <data>
-                                  <type>template</type>
-                                  <paths>
-                                    <path>var/log/acme/${project.artifactId}</path>
-                                    <path>var/log/acme/${project.artifactId}</path>
-                                  </paths>
-                                  <mapper>
-                                    <type>perm</type>
                                     <!--<user>loader</user>-->
                                     <!--<group>loader</group>-->
                                   </mapper>

@@ -1,4 +1,25 @@
 #!/bin/bash
 
+
+sed -i '1 s/^\xef\xbb\xbf//' ./.java_path.txt
+
+_java="$(cat ./.java_path.txt)"
+
+# Set variables
+artifactId="[[artifactId]]"
+
+##
+# http://stackoverflow.com/a/924539
+##
+templatefile=/etc/supervisor/conf.d/service-config-template.conf
+outputfile=/etc/supervisor/conf.d/[[artifactId]].conf
+
+echo "$(eval "echo \"$(cat $templatefile)\"")" > $outputfile
+
+rm -rf "$templatefile"
+
+mkdir -p /var/log/acme/[[artifactId]]/
+chmod -R 755 /var/log/acme/
+
 echo "Postinst:  $(supervisorctl reread)"
 echo "Postinst:  $(supervisorctl add [[artifactId]])"
