@@ -1,6 +1,9 @@
 #!/bin/bash
 
-
+##
+# A Shell Script to Find and Remove the BOM Marker
+# http://thegreyblog.blogspot.com/2010/09/shell-script-to-find-and-remove-bom.html
+##
 sed -i '1 s/^\xef\xbb\xbf//' ./.java_path.txt
 
 _java="$(cat ./.java_path.txt)"
